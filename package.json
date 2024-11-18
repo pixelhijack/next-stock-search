@@ -1,0 +1,28 @@
+{
+  "name": "next-stock-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelhijack/next-stock-search.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pixelhijack/next-stock-search/issues"
+  },
+  "homepage": "https://github.com/pixelhijack/next-stock-search#readme",
+  "dependencies": {
+    "next": "^11.1.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
