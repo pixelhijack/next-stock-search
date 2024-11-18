@@ -19,4 +19,4 @@ dev log:
 - basic display view for the response data
 - search field with loading, query, data, error states
 - Alpha Vantage daily 25 request rate limit exceeded...
-- todo temp fix: save next response json & add as mock data
+- temp fix: response json served as mock data if live API hit daily rate limit

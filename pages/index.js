@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import mockData from "../test/mock.json";
 
 export default function SearchView() {
   const apiKey = process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY;
@@ -26,7 +27,11 @@ export default function SearchView() {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setData(data);
+        // temp fix to override API daily rate limit exceeded
+        const displayData = Object.hasOwn(data, "Information")
+          ? mockData
+          : data;
+        setData(displayData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
