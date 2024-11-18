@@ -13,3 +13,10 @@ dev log:
 - nextjs.org doesn't have documentation prior to v15
 - there is a github issue page on how to find older documentation https://github.com/vercel/next.js/discussions/17548
 - next.js v11 documentation available in the github repo history
+
+- api key to local env
+- basic hardcoded fetch api url
+- basic display view for the response data
+- search field with loading, query, data, error states
+- Alpha Vantage daily 25 request rate limit exceeded...
+- todo temp fix: save next response json & add as mock data

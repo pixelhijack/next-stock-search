@@ -4,11 +4,22 @@ export default function SearchView() {
   const apiKey = process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY;
   const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=${apiKey}`;
 
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
+  const handleSearchChange = (e) => {
+    setQuery(e.target.value);
+  };
+
   useEffect(() => {
-    async function fetchData() {
+    if (!query) return;
+
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -16,21 +27,38 @@ export default function SearchView() {
         }
         const data = await response.json();
         setData(data);
+        setLoading(false);
       } catch (error) {
         setError(error.message);
+        setLoading(false);
       }
-    }
+    };
 
     fetchData();
-  }, []);
-
-  if (error) return <div>Error: {error}</div>;
-  if (!data) return <div>Loading...</div>;
+  }, [query]);
 
   return (
     <div>
       <h1>Search view</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <input
+        type="text"
+        style={{
+          minWidth: "350px",
+          lineHeight: "28px",
+          padding: "10px 10px",
+        }}
+        value={query}
+        onChange={handleSearchChange}
+        placeholder="Search Alphavantage stock quotes: type symbol or name"
+      />
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
+      {query && data && (
+        <div>
+          <h2>Search Results:</h2>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }
