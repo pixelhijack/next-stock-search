@@ -1,6 +1,6 @@
 # next-stock-search
 
-dev log:
+## dev log:
 
 - latest next.js requires node 18.18
 - brew installed nvm to update node
@@ -23,3 +23,15 @@ dev log:
 
 - tailwind & deps added w/ configuration
 - tailwind is compiled right but will not be displayed as there is a tailwind vs outdated react/next version mismatch (`content` field in `tailwind.config.js`)
+
+## Possible next steps
+
+- find which tailwind version is compatible with this version of react/next. Style the components, remove inline vanilla styles and replace with tailwind, add media-queries for responsive views
+- split index.js to /components
+- schema validation and backend keys remap for better usability on the frontend (`stock["2. name"]` -> `stock.name`)
+- more robust error / mock handling
+- for detail/[stock].js view, display stock details (possible solutions: 1. re-query the API via the stock name on detail view load, 2. pass original query results via query params 3. use Global State provider-context which might not be possible with this React version)
+- vercel deployment (install vercel CLI, create new project on Vercel Dashboard, configure git repo with Next.js Framework Preset, configure env variables for the API key, verify deployment -> tailwind will not work without the `content` field version mismatch)
+- add Server-Side Rendering (create page component, wrap context with `getServerSideProps`)
+- add second API call for detail view to pull stock prices for the given stock name
+- persist already requested / frequent favourite stocks (1. client-side cache via React State or Context if version wouldn't be outdated 2. localStorage 3. server-side caching, SSG-ISR, Cache-headers etc)
