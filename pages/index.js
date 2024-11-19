@@ -53,7 +53,7 @@ export default function SearchView() {
   }, [query]);
 
   return (
-    <div>
+    <div className="flex items-center justify-center h-screen bg-gray-100">
       <h1>Search view</h1>
       <input
         type="text"

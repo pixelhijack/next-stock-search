@@ -20,3 +20,6 @@ dev log:
 - search field with loading, query, data, error states
 - Alpha Vantage daily 25 request rate limit exceeded...
 - temp fix: response json served as mock data if live API hit daily rate limit
+
+- tailwind & deps added w/ configuration
+- tailwind is compiled right but will not be displayed as there is a tailwind vs outdated react/next version mismatch (`content` field in `tailwind.config.js`)
