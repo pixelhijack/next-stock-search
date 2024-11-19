@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import mockData from "../test/mock.json";
+
+function CardView(stock) {
+  return (
+    <Link href={`/detail/${stock["2. name"]}`}>
+      <div>{stock["2. name"]}</div>
+    </Link>
+  );
+}
 
 export default function SearchView() {
   const apiKey = process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY;
-  const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=${apiKey}`;
 
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+
+  const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${apiKey}`;
 
   const handleSearchChange = (e) => {
     setQuery(e.target.value);
@@ -61,6 +71,7 @@ export default function SearchView() {
       {query && data && (
         <div>
           <h2>Search Results:</h2>
+          {data.bestMatches.map((item) => CardView(item))}
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
       )}
